@@ -1,0 +1,67 @@
+<br/><br/>
+<div class="d-flex justify-content-center" *ngIf="!topics">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<div class="alert alert-warning" role="alert" *ngIf="status == 'Error'"><a class='close' data-dismiss='alert'>×</a>
+  Problem deleting the topic, try again!
+</div>
+<div class="alert alert-success" role="alert" *ngIf="status == 'Success'"><a class='close' data-dismiss='alert'>×</a>
+  The post was deleted!
+</div>
+<br/><br/>
+
+<table style="width:100%" datatable="test" [dtOptions]="dtOptions" class="table table-striped" *ngIf="topics">
+  <thead class="sticky-top">
+    <tr>
+      <th>Topic</th>
+      <th>By</th>
+      <th>#Answers</th>
+      <th></th>
+      <th *ngIf="userInfo"></th>
+      <th *ngIf="userInfo"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let el of topics">
+      <td>{{el.title}}</td>
+      <td>{{el.user.name}} {{el.user.surname}}</td>
+      <td>{{el.comments.length}}</td>
+      <td>
+        <img class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/see.png">
+      </td>
+      <td *ngIf="userInfo">
+        <img class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/edit.png">
+      </td>
+      <td *ngIf="userInfo">
+        <img data-toggle="modal" data-target="#deleteTopicModal" (click)="loadTopic(el)" class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/delete.png">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="modal fade" id="deleteTopicModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+            aria-hidden="true">&times;
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id = "question">Do you really want to delete this post?</p>
+        <input type="hidden" name="id" [(ngModel)]="topicTE._id" #id="ngModel">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+            data-dismiss="modal">cancel
+        </button>
+        <button type='submit' class='btn btn-primary' (click)="deleteTopic()" data-dismiss="modal">
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
