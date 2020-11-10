@@ -1,16 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { routing, routingProviders } from './app.routing';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { ErrorComponent } from './components/error/error.component';
+import { GeneralTopicsComponent } from './components/general-topics/general-topics.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    HomeComponent,
+    SignupComponent,
+    ProfileComponent,
+    UserEditComponent,
+    ErrorComponent,
+    GeneralTopicsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    routing,
+    FormsModule,
+    HttpClientModule,
+    DataTablesModule
   ],
-  providers: [],
+  providers: [
+    routingProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
