@@ -27,8 +27,8 @@ export class GeneralTopicsComponent implements OnInit {
       info: false,
       ordering: false,
       scrollCollapse: true,
-      scrollX: true,
-      scrollY: "600px",
+      //scrollX: true,
+      //scrollY: "600px",
 
     };
     this.loadUser();

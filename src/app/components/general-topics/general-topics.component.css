@@ -3,3 +3,18 @@
 	height: 20px;
 	cursor: pointer;
 }
+
+.points{
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.box{
+  text-align: center;
+ border-radius: 5px;
+ font-size: 13px;
+  border: 1px solid #0c9b47;
+  color: #0c9b47;
+  max-width: 75px;
+  min-width: 75px;
+}

@@ -13,30 +13,38 @@
 </div>
 <br/><br/>
 
-<table style="width:100%" datatable="test" [dtOptions]="dtOptions" class="table table-striped" *ngIf="topics">
-  <thead class="sticky-top">
+<table style="width:100%" datatable="test" [dtOptions]="dtOptions" class="table" *ngIf="topics">
+  <thead>
     <tr>
-      <th>Topic</th>
-      <th>By</th>
-      <th>#Answers</th>
       <th></th>
-      <th *ngIf="userInfo"></th>
-      <th *ngIf="userInfo"></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let el of topics">
-      <td>{{el.title}}</td>
-      <td>{{el.user.name}} {{el.user.surname}}</td>
-      <td>{{el.comments.length}}</td>
       <td>
-        <img class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/see.png">
-      </td>
-      <td *ngIf="userInfo">
-        <img class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/edit.png">
-      </td>
-      <td *ngIf="userInfo">
-        <img data-toggle="modal" data-target="#deleteTopicModal" (click)="loadTopic(el)" class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/delete.png">
+        <div class="row">
+          <div class="col-2 align-self-center box">
+            {{el.comments.length}}<br/>
+            answers
+          </div>
+          <div class="col">
+            <a [routerLink]="[ '/topic', el._id ]">{{el.title}}</a><br/>
+            <div class="points">
+              {{el.content.substr(0,200)}} ...
+            </div>
+            <div align="right" style="font-size: 0.8rem;">
+              Written on {{el.date.substr(0,10)}} by <br/>
+              <a [routerLink]="[ '/profile', el.user._id ]">{{el.user.name}} {{el.user.surname}}</a>
+            </div>
+            <!--<td>
+              <img class="icon" src="./assets/images/see.png">
+            </td>-->
+            <div align="right" *ngIf="userInfo">
+              <img class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/edit.png">
+              <img data-toggle="modal" *ngIf="userInfo._id == el.user._id" data-target="#deleteTopicModal" (click)="loadTopic(el)" class="icon" src="./assets/images/delete.png">
+            </div>
+          </div>
+        </div>
       </td>
     </tr>
   </tbody>

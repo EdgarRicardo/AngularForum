@@ -13,6 +13,7 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { ErrorComponent } from './components/error/error.component';
 import { GeneralTopicsComponent } from './components/general-topics/general-topics.component';
 import { DataTablesModule } from 'angular-datatables';
+import { TopicComponent } from './components/topic/topic.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DataTablesModule } from 'angular-datatables';
     ProfileComponent,
     UserEditComponent,
     ErrorComponent,
-    GeneralTopicsComponent
+    GeneralTopicsComponent,
+    TopicComponent
   ],
   imports: [
     BrowserModule,
