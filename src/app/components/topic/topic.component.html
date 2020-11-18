@@ -1,1 +1,83 @@
-<p>topic works!</p>
+<div *ngIf="topic" class="col-lg-12 mt-3">
+  <h1><b>{{topic.title}}</b></h1>
+  <span class="badge badge-warning" *ngIf="topic.lang">
+    {{topic.lang}}
+  </span>
+  <span class="badge badge-primary ml-2">
+    {{topic.user.name}} {{topic.user.surname}}
+  </span>
+  <span class="badge badge-light ml-2">
+    {{topic.date | amTimeAgo}}
+  </span>
+  <p class="mt-4 ml-4" style="font-size: small;">
+    {{topic.content}}
+  </p>
+  <pre *ngIf="topic.code && topic.lang" style="font-size: smaller;">
+    <code [highlight]="topic.code"
+      [lineNumbers]="true">
+    </code>
+  </pre>
+  <hr/>
+  <div id="div_answer" *ngIf="userInfo">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+      <label for="answer">
+        <h5>
+          <i>Your answer</i>
+        </h5>
+      </label>
+      <div class="alert alert-warning" role="alert" *ngIf="status == 'Error'"><a class='close' data-dismiss='alert'>×</a>
+        Problem posting your answer, try again!
+      </div>
+      <div class="form-group mt-2 ml-2">
+        <textarea name="answer" #answer="ngModel" [(ngModel)]="comment.content" class="form-control" required></textarea>
+      </div>
+      <small *ngIf="(!answer.valid && answer.touched)" class="invalid-feedback d-block">
+        Answer is not valid
+      </small>
+      <div class="text-right">
+        <button class="btn btn-primary" *ngIf="comment.content.trim().length == 0" disabled>
+          Post your answer
+        </button>
+        <button class="btn btn-primary" *ngIf="comment.content.trim().length > 0" [disabled]="registerForm.invalid">
+          Post your answer
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="mt-6">
+    <h3>Comments</h3>
+    <p *ngIf="comments.length == 0">Sorry, there is not comments for this topic :(</p>
+    <table style="width:100%" datatable="test" [dtOptions]="dtOptions" class="table" *ngIf="comments.length > 0">
+      <thead>
+        <tr>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let el of comments">
+          <td>
+            <div class="row">
+              <div class="col">
+                <div class="points">
+                    {{el.content}}
+                </div>
+                <div align="right" style="font-size: 0.8rem;">
+                  Answered {{el.date | amTimeAgo}} by <br/>
+                  <a [routerLink]="[ '/profile', el.user._id ]">{{el.user.name}} {{el.user.surname}}</a>
+                </div>
+                <!--<td>
+                  <img class="icon" src="./assets/images/see.png">
+                </td>-->
+                <div align="right" *ngIf="userInfo">
+                  <img class="icon" *ngIf="userInfo._id == el.user._id" src="./assets/images/edit.png" data-target="#editTopicModal" data-toggle="modal" (click)="loadTopic(el)">
+                  <img data-toggle="modal" *ngIf="userInfo._id == el.user._id" data-target="#deleteTopicModal" (click)="loadTopic(el)" class="icon" src="./assets/images/delete.png">
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

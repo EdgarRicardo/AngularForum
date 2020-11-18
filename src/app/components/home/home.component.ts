@@ -10,7 +10,7 @@ import { TopicService } from 'src/app/services/topic.service';
 export class HomeComponent implements OnInit {
   public topics: Array<Topic>;
   public status: string;
-  constructor(public _topicService: TopicService) {
+  constructor(private _topicService: TopicService) {
     this.getTopics();
   }
 
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
         if(Object.keys(response.topics).length === 0) this.topics = null;
         else {
           this.topics = response.topics;
-          console.log(this.topics);
+          //console.log(this.topics);
         }
       },
       er => {

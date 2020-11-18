@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ErrorComponent } from './components/error/error.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { NewTopicComponent } from './components/new-topic/new-topic.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { TopicComponent } from './components/topic/topic.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path: 'home', component:HomeComponent},
   {path: 'userSettings', component:UserEditComponent},
   {path: 'topic/:id', component:TopicComponent},
+  {path: 'newTopic', component:NewTopicComponent},
+  {path: 'profile/:id', component:ProfileComponent},
   {path: '**', component:ErrorComponent},
   {path: 'error', component:ErrorComponent}
 ];

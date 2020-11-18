@@ -37,12 +37,12 @@ export class TopicService {
       return this._http.delete(this.url+link, {headers: headers});
   }
 
-  register(topic){
-    return this.request(topic, 'topic','post');
+  register(topic, token){
+    return this.request(topic, 'topic','post', token);
   }
 
   update(topic, token){
-    return this.request(topic, 'topic','put', token);
+    return this.request(topic, 'topic/'+topic._id,'put', token);
   }
 
   delete(id, token){
@@ -50,7 +50,7 @@ export class TopicService {
   }
 
   getTopic(id){
-    return this.request(null, 'topic','get');
+    return this.request(null, 'topic/'+id,'get');
   }
 
   getTopics(){
