@@ -3,3 +3,8 @@
 	height: 20px;
 	cursor: pointer;
 }
+
+tr{
+  background-color: transparent !important;
+}
+

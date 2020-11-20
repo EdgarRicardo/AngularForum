@@ -18,3 +18,7 @@
   max-width: 75px;
   min-width: 75px;
 }
+
+tr{
+  background-color: transparent !important;
+}

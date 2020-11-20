@@ -25,12 +25,13 @@ export class GeneralTopicsComponent implements OnInit {
     private _topicService: TopicService
     ) {
     this.dtOptions = {
-      pageLength: -1,
-      lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "All"]],
+      pageLength: 4,
+      //lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "All"]],
       processing: true,
       info: false,
       ordering: false,
       scrollCollapse: true,
+      lengthChange: false
       /*columnDefs:[
         { orderable: false,targets: 1},
         { width: "150%", targets: 0 },

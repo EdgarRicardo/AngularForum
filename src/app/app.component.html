@@ -1,66 +1,69 @@
-<nav class="navbar navbar-expand-md bg-light navbar-light" style="background-color: #e3f2fd;">
-  <div class="container">
-    <a class="navbar-brand" [routerLink]="['/home']">
-      <img src="assets/images/logo.png" width="60" height="60" class="d-inline-block align-top" alt="">
+<header class="header">
+  <nav class="navbar navbar-expand-md bg-light navbar-light" style="background-color: #e3f2fd;">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="['/home']">
+        <img src="assets/images/logo.png" width="60" height="60" class="d-inline-block align-top" alt="">
 
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/home']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home <span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/home']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item" *ngIf="userInfo">
+            <a class="nav-link" [routerLink]="['/newTopic']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create Topic<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
 
-      <ul class="navbar-nav navbar-rigth" *ngIf="!userInfo">
-        <li class="nav-item dropdown">
-          <a class="nav-link" [routerLink]="['/login']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Login
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link" [routerLink]="['/signup']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Sign up
-          </a>
-        </li>
-      </ul>
+        <ul class="navbar-nav navbar-rigth" *ngIf="!userInfo">
+          <li class="nav-item dropdown">
+            <a class="nav-link" [routerLink]="['/login']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Login
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link" [routerLink]="['/signup']" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sign up
+            </a>
+          </li>
+        </ul>
 
-      <ul class="navbar-nav navbar-rigth dropleft" *ngIf="userInfo">
-        <li *ngIf="userInfo.avatar" class="nav-item">
-          <img src="{{url + 'getAvatar/' + userInfo.avatar}}" class="img-circle float-right " style="width: 12%; border-radius: 100%">
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <b>{{userInfo.name + ' ' + userInfo.surname}}</b>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['/newTopic']">Create Topic</a>
-            <a class="dropdown-item" [routerLink]="[ '/categorySettings']" *ngIf="userInfo.role == 'Admin'">Category Settings</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" [routerLink]="[ '/profile',userInfo._id]">Profile</a>
-            <a class="dropdown-item" [routerLink]="[ '/userSettings']">User Settings</a>
-            <a class="dropdown-item" [routerLink]="[ '/logout/1']">Log out</a>
-          </div>
-        </li>
-      </ul>
+        <ul class="navbar-nav navbar-rigth dropleft" *ngIf="userInfo">
+          <li *ngIf="userInfo.avatar" class="nav-item">
+            <img src="{{url + 'getAvatar/' + userInfo.avatar}}" class="img-circle float-right " style="width: 12%; border-radius: 100%">
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <b>{{userInfo.name + ' ' + userInfo.surname}}</b>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" [routerLink]="['/newTopic']">Create Topic</a>
+              <a class="dropdown-item" [routerLink]="[ '/categorySettings']" *ngIf="userInfo.role == 'Admin'">Category Settings</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" [routerLink]="[ '/profile',userInfo._id]">Profile</a>
+              <a class="dropdown-item" [routerLink]="[ '/userSettings']">User Settings</a>
+              <a class="dropdown-item" [routerLink]="[ '/logout/1']">Log out</a>
+            </div>
+          </li>
+        </ul>
 
-      <ul class="navbar-nav navbar-rigth" *ngIf="!userInfo">
-        <b>Guest</b>
-      </ul>
+        <ul class="navbar-nav navbar-rigth" *ngIf="!userInfo">
+          <b>Guest</b>
+        </ul>
 
+      </div>
     </div>
+  </nav>
+  <div class="container form-container">
+    <router-outlet>
+    </router-outlet>
   </div>
-</nav>
-
-<div class="container ">
-  <router-outlet>
-  </router-outlet>
-</div>
-<br/><br/>
-
+  <br/><br/>
+</header>
 <footer class="copyright py-1 text-center text-white bg-dark">
   <small> © 2020 Copyright: Edgar CORONA</small>
 </footer>

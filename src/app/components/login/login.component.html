@@ -1,7 +1,5 @@
 <div class="col-md-12 mt-4">
   <h1>{{title}}</h1>
-
-  <br/>
   <div class="alert alert-warning" role="alert" *ngIf="status == 'Error'"><a class='close' data-dismiss='alert'>×</a>
     Problem with the authentification, try again!
   </div>
@@ -9,8 +7,8 @@
   <div class="alert alert-success" role="alert" *ngIf="status == 'Success'"><a class='close' data-dismiss='alert'>×</a>
     Login successful!
   </div>
-  <div>
-    <div class="col-md-8 form-container">
+    <div class="">
+      <br/>
       <form class="" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
         <div class="form-group">
           <label for="email">Email Address</label>
