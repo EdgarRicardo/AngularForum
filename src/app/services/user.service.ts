@@ -51,17 +51,18 @@ export class UserService {
   }
 
   getToken(){
-    if(localStorage.getItem('token'))
-      this.token = localStorage.getItem('token');
-
+    this.token = sessionStorage.getItem('token');
     return this.token;
   }
 
   getInfoUser(){
-    if(localStorage.getItem('userInfo'))
-      this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    return this.userInfo;
+  }
 
-      return this.userInfo;
+  logout(){
+    sessionStorage.removeItem('userInfo');
+    sessionStorage.removeItem('token');
   }
 
   tokenValidation(token){

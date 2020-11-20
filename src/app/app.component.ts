@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { global_info } from './services/global_info';
 import { UserService } from './services/user.service';
 
@@ -7,7 +7,7 @@ import { UserService } from './services/user.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements DoCheck {
   title = 'Personal Blog';
   public userInfo;
   public token;
@@ -27,7 +27,6 @@ export class AppComponent {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
     this.loadUser();
-
   }
 
   loadUser(){

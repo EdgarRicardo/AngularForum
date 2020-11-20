@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
           this.status = response.status;
 
           //Save user credentials in local storage
-          localStorage.setItem('token', response.token);
-          localStorage.setItem('userInfo', JSON.stringify(response.user));
+          sessionStorage.setItem('token', response.token);
+          sessionStorage.setItem('userInfo', JSON.stringify(response.user));
 
           this._router.navigate(['/home']);
           form.reset();
@@ -51,8 +51,7 @@ export class LoginComponent implements OnInit {
   logout(){
     this._route.params.subscribe( params => {
       if(+params['sure']){
-        localStorage.removeItem('userInfo');
-        localStorage.removeItem('token');
+        this._userService.logout();
         this._router.navigate(['/home']);
       }
     });
