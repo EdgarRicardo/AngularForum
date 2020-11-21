@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { Topic } from 'src/app/models/topic.model';
 import { global_info } from 'src/app/services/global_info';
 import { TopicService } from 'src/app/services/topic.service';
@@ -19,6 +20,20 @@ export class NewTopicComponent implements OnInit {
   public topic: Topic;
   public langList: Array<string>;
   public message: string;
+  editorOpt: AngularEditorConfig = {
+    editable: true,
+    sanitize: true,
+    placeholder: 'Enter text here...',
+    toolbarHiddenButtons: [
+      [],
+      [
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+      ]
+    ]
+  };
   constructor(private _userService: UserService,
     private _topicService: TopicService
     ) {

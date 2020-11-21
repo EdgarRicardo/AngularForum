@@ -9,9 +9,11 @@
   <span class="badge badge-light ml-2">
     {{topic.date | amTimeAgo}}
   </span>
-  <p class="mt-4 ml-4" style="font-size: small;">
-    {{topic.content}}
-  </p>
+
+  <div class="mt-3 box">
+    <p [innerHtml]="topic.content"></p>
+  </div>
+
   <pre *ngIf="topic.code && topic.lang" style="font-size: smaller;">
     <code [highlight]="topic.code"
       [lineNumbers]="true">

@@ -29,7 +29,7 @@
           <div class="col">
             <a [routerLink]="[ '/topic', el._id ]">{{el.title}}</a><br/>
             <div class="points">
-              {{el.content.substr(0,200)}} ...
+              <p>{{newContent(el.content)}}</p>
             </div>
             <div align="right" style="font-size: 0.8rem;">
               Written {{el.date | amTimeAgo}} by <br/>
@@ -74,7 +74,7 @@
 </div>
 
 <div *ngIf="topicTE" class="modal fade" id="editTopicModal">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
           <h4 class="modal-title">
@@ -97,8 +97,9 @@
 
             <div class="form-group">
               <label for="content">Content</label>
-              <textarea name="content" class="form-control" #content="ngModel" [(ngModel)]="topicTE.content" required></textarea>
-              <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">
+              <angular-editor name="content" #content="ngModel" [(ngModel)]="topicTE.content" required
+              [config]="editorOpt"></angular-editor>
+              <small *ngIf="(!content.valid && content.touched)" class="invalid-feedback d-block">
                 Content is not valid
               </small>
             </div>

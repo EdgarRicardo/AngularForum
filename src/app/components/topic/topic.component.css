@@ -8,3 +8,9 @@ tr{
   background-color: transparent !important;
 }
 
+.box{
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: transparent;
+}
+

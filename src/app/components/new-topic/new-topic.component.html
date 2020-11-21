@@ -19,13 +19,22 @@
       </small>
     </div>
 
-    <div class="form-group">
+    <!--<div class="form-group">
       <label for="content">Content</label>
       <textarea name="content" class="form-control" #content="ngModel" [(ngModel)]="topic.content" required></textarea>
       <small *ngIf="!content.valid && content.touched" class="invalid-feedback d-block">
         Content is not valid
       </small>
+    </div>-->
+
+    <div class="form-group">
+      <label for="content">Content</label>
+      <angular-editor name="content" #content="ngModel" [config]="editorOpt" [(ngModel)]="topic.content" required></angular-editor>
+      <small *ngIf="(!content.valid && content.touched)" class="invalid-feedback d-block">
+        Content is not valid
+      </small>
     </div>
+
 
     <div class="form-group">
       <label for="code">Code</label>

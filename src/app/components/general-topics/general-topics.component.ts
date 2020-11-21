@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MomentModule } from 'angular2-moment';
 import { Topic } from 'src/app/models/topic.model';
 import { TopicService } from 'src/app/services/topic.service';
@@ -20,6 +21,20 @@ export class GeneralTopicsComponent implements OnInit {
   public statusEdit:string;
   public message: string;
   public langList: Array<string>;
+  editorOpt: AngularEditorConfig = {
+    editable: true,
+    sanitize: true,
+    placeholder: 'Enter text here...',
+    toolbarHiddenButtons: [
+      [],
+      [
+        'link',
+        'unlink',
+        'insertImage',
+        'insertVideo',
+      ]
+    ]
+  };
   dtOptions: DataTables.Settings = {};
   constructor(
     private _userService: UserService,
@@ -106,5 +121,11 @@ export class GeneralTopicsComponent implements OnInit {
   loadLang(lang){
     console.log(lang.target.value);
     this.topicTE.lang = lang.target.value;
+  }
+
+  newContent(content: String){
+    let newContent: String = content.replace(/(<([^>]+)>)/gi, "").substr(0,200);
+    if(content.length > 200) newContent+= " ...";
+    return newContent;
   }
 }
