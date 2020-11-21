@@ -36,6 +36,10 @@ export class UserService {
       return this._http.post(this.url+link, data, {headers: headers});
     else if (type == 'put')
       return this._http.put(this.url+link, data, {headers: headers});
+    else if (type == 'get')
+      return this._http.get(this.url+link);
+    else if (type == 'delete')
+      return this._http.delete(this.url+link, {headers: headers});
   }
 
   register(user){
@@ -48,6 +52,14 @@ export class UserService {
 
   update(user, token){
     return this.request(user, 'update','put', token);
+  }
+
+  getUser(id){
+    return this.request(null, 'getUsers/'+id,'get');
+  }
+
+  getUsers(){
+    return this.request(null, 'getUsers/','get');
   }
 
   getToken(){

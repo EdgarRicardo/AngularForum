@@ -48,7 +48,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
         fullLibraryLoader: () => import('highlight.js'),
-        lineNumbers: true
+        lineNumbersLoader: () => import('highlightjs-line-numbers.js')
       }
     }
   ],

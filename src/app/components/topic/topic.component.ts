@@ -21,7 +21,7 @@ export class TopicComponent implements OnInit {
   public url: string;
   public topic: Topic;
   public comment: Comment;
-  public comments: Array<Comment>;
+  public comments: Array<Comment> = [];
   dtOptions: DataTables.Settings = {};
   constructor(private _userService: UserService,
     private _topicService: TopicService,

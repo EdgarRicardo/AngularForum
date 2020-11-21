@@ -10,6 +10,7 @@ import { TopicService } from 'src/app/services/topic.service';
 export class HomeComponent implements OnInit {
   public topics: Array<Topic>;
   public status: string;
+  public search = true;
   constructor(private _topicService: TopicService) {
     this.getTopics();
   }

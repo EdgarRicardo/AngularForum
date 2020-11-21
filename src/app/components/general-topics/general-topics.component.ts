@@ -14,6 +14,7 @@ export class GeneralTopicsComponent implements OnInit {
   public userInfo = null;
   public token = null;
   @Input() topics: Array<Topic>;
+  @Input() search: boolean;
   public topicTE: Topic; //Topic to edit / see / delete
   public status:string;
   public statusEdit:string;
@@ -61,7 +62,9 @@ export class GeneralTopicsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dtOptions.searching = this.search;
   }
+
 
   deleteTopic(){
     this._topicService.delete(this.topicTE._id, this.token).subscribe(
