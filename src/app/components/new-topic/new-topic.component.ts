@@ -20,39 +20,15 @@ export class NewTopicComponent implements OnInit {
   public topic: Topic;
   public langList: Array<string>;
   public message: string;
-  editorOpt: AngularEditorConfig = {
-    editable: true,
-    sanitize: true,
-    placeholder: 'Enter text here...',
-    toolbarHiddenButtons: [
-      [],
-      [
-        'link',
-        'unlink',
-        'insertImage',
-        'insertVideo',
-      ]
-    ]
-  };
+  editorOpt: AngularEditorConfig = global_info.editorOpt;
   constructor(private _userService: UserService,
     private _topicService: TopicService
     ) {
       this.loadUser();
       this.url = global_info.url;
       this.topic = new Topic('','','','','',null,this.userInfo._id,null);
-      this.langList = [
-        "php",
-        "typescript",
-        "html",
-        "javascript",
-        "python",
-        "c",
-        "c++",
-        "css",
-        "c#",
-        "java",
-        "another"
-      ];
+      this.langList = global_info.langList;
+      this.editorOpt.editable = this.token ? true : false;
     }
 
   ngOnInit(): void {

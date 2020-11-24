@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { MomentModule } from 'angular2-moment';
 import { Topic } from 'src/app/models/topic.model';
+import { global_info } from 'src/app/services/global_info';
 import { TopicService } from 'src/app/services/topic.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,55 +21,22 @@ export class GeneralTopicsComponent implements OnInit {
   public status:string;
   public statusEdit:string;
   public message: string;
-  public langList: Array<string>;
-  editorOpt: AngularEditorConfig = {
-    editable: true,
-    sanitize: true,
-    placeholder: 'Enter text here...',
-    toolbarHiddenButtons: [
-      [],
-      [
-        'link',
-        'unlink',
-        'insertImage',
-        'insertVideo',
-      ]
-    ]
-  };
-  dtOptions: DataTables.Settings = {};
-  constructor(
-    private _userService: UserService,
-    private _topicService: TopicService
-    ) {
-    this.dtOptions = {
-      pageLength: 4,
-      //lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "All"]],
+  public langList: Array<string> = global_info.langList;
+  editorOpt: AngularEditorConfig = global_info.editorOpt;
+  dtOptions: DataTables.Settings = {
+    pageLength: 4,
       processing: true,
       info: false,
       ordering: false,
       scrollCollapse: true,
       lengthChange: false
-      /*columnDefs:[
-        { orderable: false,targets: 1},
-        { width: "150%", targets: 0 },
-        { width: "0%", targets: 1 }
-      ]*/
-    };
+  };
+  constructor(
+    private _userService: UserService,
+    private _topicService: TopicService
+    ) {
     this.loadUser();
     this.topicTE = new Topic('','','','','','','','');
-    this.langList = [
-      "php",
-      "typescript",
-      "html",
-      "javascript",
-      "python",
-      "c",
-      "c++",
-      "css",
-      "c#",
-      "java",
-      "another"
-    ];
   }
 
   loadUser(){

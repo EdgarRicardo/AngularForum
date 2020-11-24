@@ -22,7 +22,16 @@ export class TopicComponent implements OnInit {
   public topic: Topic;
   public comment: Comment;
   public comments: Array<Comment> = [];
-  dtOptions: DataTables.Settings = {};
+  dtOptions: DataTables.Settings = {
+    pageLength: -1,
+        lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "All"]],
+        info: false,
+        "lengthChange": false,
+        ordering: false,
+        scrollCollapse: true,
+        searching: false
+  };
+  public editorOpt: AngularEditorConfig = global_info.editorOpt;
   constructor(private _userService: UserService,
     private _topicService: TopicService,
     private _activatedRoute: ActivatedRoute,
@@ -33,15 +42,6 @@ export class TopicComponent implements OnInit {
       this.url = global_info.url;
       this.topic = new Topic('','','','','',null,'',null);
       this.comment = new Comment('','','');
-      this.dtOptions = {
-        pageLength: -1,
-        lengthMenu: [[5, 10, 15, -1], [5, 10, 15, "All"]],
-        info: false,
-        "lengthChange": false,
-        ordering: false,
-        scrollCollapse: true,
-        searching: false
-      };
     }
 
   ngOnInit(): void {
@@ -90,6 +90,30 @@ export class TopicComponent implements OnInit {
       },
       er => {
         this.status = er.error.status;
+        console.log(<any>er);
+      }
+    );
+  }
+
+  validAnswer(content: String){
+    return content.replace(/(<([^>]+)>)/gi, "").replace(/&#160;/gi,"").trim().length > 0;
+  }
+
+  loadComment(c){
+    this.comment = c;
+  }
+
+  deleteComment(){
+    this._commentService.delete(this.comment._id, this.token).subscribe(
+      response => {
+        this.status = response.status;
+        // To update the screen!
+        let index = this.comments.findIndex(element => element._id == this.comment._id);
+        this.comments.splice(index,1);
+      },
+      er => {
+        this.status = er.error.status;
+        //this.message = er.error.message;
         console.log(<any>er);
       }
     );
