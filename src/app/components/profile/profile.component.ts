@@ -18,9 +18,9 @@ export class ProfileComponent implements OnInit, DoCheck {
   public token = null;
   public status: string;
   public url: string;
-  public topics: Array<Topic>;
+  public topics: Array<Topic> = [];
   public idProfile: string;
-  public profile: User;
+  public profile: User = null;
   public search = false;
   constructor(
     private _topicService: TopicService,

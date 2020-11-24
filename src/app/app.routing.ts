@@ -8,6 +8,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { TopicComponent } from './components/topic/topic.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { AuthGuard } from './services/auth.guard';
 
 //Defining routes
 const routes: Routes = [
@@ -16,9 +17,9 @@ const routes: Routes = [
   {path: 'logout/:sure', component:LoginComponent},
   {path: 'signup', component:SignupComponent},
   {path: 'home', component:HomeComponent},
-  {path: 'userSettings', component:UserEditComponent},
+  {path: 'userSettings', component:UserEditComponent, canActivate: [AuthGuard]},
   {path: 'topic/:id', component:TopicComponent},
-  {path: 'newTopic', component:NewTopicComponent},
+  {path: 'newTopic', component:NewTopicComponent, canActivate: [AuthGuard]},
   {path: 'profile/:id', component:ProfileComponent},
   {path: '**', component:ErrorComponent},
   {path: 'error', component:ErrorComponent}

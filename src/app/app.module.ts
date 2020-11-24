@@ -17,6 +17,7 @@ import { NewTopicComponent } from './components/new-topic/new-topic.component';
 import { MomentModule } from 'angular2-moment';
 import { HighlightModule, HIGHLIGHT_OPTIONS, HighlightOptions } from 'ngx-highlightjs';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AuthGuard } from './services/auth.guard';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
   ],
   providers: [
     routingProviders,
+    AuthGuard,
     {
       provide: HIGHLIGHT_OPTIONS,
       useValue: {
